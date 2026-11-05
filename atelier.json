@@ -18,5 +18,7 @@
     }
   ],
   "gallery": [],
-  "title": "L'atelier"
+  "title": "L'atelier",
+  "cta_label": "Préparer une visite",
+  "cta_url": "galerie.html#visiter"
 }

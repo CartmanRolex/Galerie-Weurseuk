@@ -1,12 +1,45 @@
 {
-  "eyebrow": "Expositions · ",
-  "title": "Biennale Arte 2026, Venise, Italie",
-  "intro": "Participation à l'exposition Fissures of Light – Diaspora: Dissonances in Fa Minor, organisée par l'association Tissali Arts & Cultures, au Palazzo Donà dalle Rose, avec la Fondazione Donà dalle Rose, à Venise.\n\n\n\nà la 61e Exposition internationale d’art présentée du 9 mai au 22 novembre 2026 à Venise, en Italie.\n\nÀ travers cette participation, Nalla Thioye poursuit son exploration artistique autour de la mémoire, de l’identité, de l'héritage culturel et des liens entre l'humain, la mer et la spiritualité.\n\n",
-  "sections": [
+  "title": "Expositions",
+  "eyebrow": "À la galerie et ailleurs",
+  "intro": "Les expositions de la galerie et les participations de Nalla Thioye, avec les informations propres à chaque rendez-vous.",
+  "events": [
     {
-      "title": "Exposition en cours",
-      "text": " 2026 — 16e Biennale de l'Art africain contemporain, Dak'Art | Dakar, Sénégal\n\nThème : (Anti)fragilité — Arts de la réparation et stratégies du contrecoup.\n\nSous la direction artistique de Morad Montazami, cette 16e édition explore la fragilité comme une force de création, de transformation, de solidarité et de réparation.\n\nÀ travers cette édition, les artistes sont invités à interroger les liens entre mémoire, identité, héritage, écologie, transmission et dialogue entre les continents.\n\nDates : 19 novembre – 19 décembre 2026\n\nNalla Thioye\nVicThor\nNicolas d’Ursel\nFabien de Cugnac\nThere is a Crack in Everything\nExhibition\n23 November - 20 December 2026\nThursday, Saturday & Sunday from 3 to 6 pm or by appointment\nJeudi, samedi et dimanche de 15 à 18h ou sur rendez-vous\nVernissage\n22 November de 11am\n-\n6pm\nÎle de Ngor, Sénégal\nRue 01 Cheik El Hadji Mbaye Seck / Chemin de l’Océan (des Écrivains)\n14°45’24.6”N - 17°30’46.9”W 14.756829 - 17.513038"
+      "id": "venise-2026",
+      "title": "Fissures of Light – Diaspora: Dissonances in Fa Minor",
+      "kind": "Participation de Nalla Thioye",
+      "location": "Palazzo Donà dalle Rose, Venise, Italie",
+      "start": "2026-05-09",
+      "end": "2026-11-22",
+      "date_note": "Dates de la manifestation.",
+      "description": "Participation organisée par l’association Tissali Arts & Cultures, avec la Fondazione Donà dalle Rose. Le travail présenté explore la mémoire, l’identité, l’héritage culturel et les liens entre l’humain, la mer et la spiritualité."
+    },
+    {
+      "id": "dakart-2026",
+      "title": "Dak’Art 2026 : (Anti)fragilité",
+      "kind": "Rendez-vous artistique à Dakar",
+      "location": "Dakar, Sénégal",
+      "start": "2026-11-19",
+      "end": "2026-12-19",
+      "description": "Sous la direction artistique de Morad Montazami, la 16e Biennale de l’Art africain contemporain explore la fragilité comme une force de création, de transformation, de solidarité et de réparation."
+    },
+    {
+      "id": "crack-in-everything-2026",
+      "title": "There is a Crack in Everything",
+      "kind": "Exposition collective à Ngor",
+      "location": "Île de Ngor, Sénégal",
+      "start": "2026-11-23",
+      "end": "2026-12-20",
+      "artists": [
+        "Nalla Thioye",
+        "VicThor",
+        "Nicolas d’Ursel",
+        "Fabien de Cugnac"
+      ],
+      "opening": "22 novembre 2026, de 11 h à 18 h",
+      "hours": "Jeudi, samedi et dimanche, de 15 h à 18 h, ou sur rendez-vous.",
+      "address": "Rue 01 Cheik El Hadji Mbaye Seck / Chemin de l’Océan (des Écrivains)",
+      "map_url": "https://www.google.com/maps?q=14.756829,-17.513038",
+      "description": "Une exposition collective réunissant quatre artistes à Ngor."
     }
-  ],
-  "gallery": []
+  ]
 }

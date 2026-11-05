@@ -1,22 +1,22 @@
 {
   "eyebrow": "Catalogue",
   "page_title": "Les œuvres",
-  "page_intro": "Chaque toile est une pièce unique, signée. Dimensions et disponibilité communiquées sur demande.",
+  "page_intro": "Des pièces uniques, signées. Les informations disponibles figurent sous chaque œuvre ; contactez la galerie pour une acquisition.",
   "series": [
     {
-      "name": "Mafijaroon ",
+      "name": "Mafijaroon",
       "works": [
         {
           "artist": "Nalla Thioye",
           "price": "100 000 FCFA",
           "alt": "Masse rouge travaillée au couteau, éclats jaunes",
           "reference": "Unique ",
-          "dimensions": "50X50",
+          "dimensions": "50 × 50",
           "medium": "Huile sur toile",
-          "title": "Vague rouge |",
+          "title": "Vague rouge I",
           "availability": "Disponible",
           "image": "images/img_0121.jpeg",
-          "description": "\nVague Rouge est une série composée de deux tableaux qui explore la rencontre entre la force de la mer, la mémoire et les émotions humaines.\nLa vague devient ici un symbole de mouvement, de transformation et de résistance. Le rouge, couleur dominante, évoque à la fois l’énergie, la passion, le danger et la puissance vitale. Il donne à la mer une dimension presque intérieure : une mer qui ne représente pas seulement un paysage, mais un état d’âme.\nÀ travers ces deux œuvres, je cherche à créer un dialogue entre le calme et la tension, la beauté et la fragilité, le mouvement et l’immobilité. La répétition de la vague dans les deux tableaux suggère un cycle perpétuel : comme la mer, nos histoires reviennent, se transforment et laissent toujours une trace.\nInspirée par mon rapport à la mer et à la culture côtière sénégalaise, cette série fait également écho à la mémoire des peuples de la côte, aux voyages et aux départs, ainsi qu’à cette relation profonde entre l’être humain et l’océan.\nVague Rouge est finalement une invitation à regarder la mer autrement : non comme un simple horizon, mais comme une force vivante qui porte nos souvenirs, nos peurs, nos espoirs et notre désir d’avancer.",
+          "description": "",
           "year": "2026"
         },
         {
@@ -24,18 +24,19 @@
           "price": "100 000 FCFA",
           "alt": "Couleurs rouges et colonne de jaune",
           "reference": "Unique ",
-          "dimensions": "50x50",
+          "dimensions": "50 × 50",
           "medium": "Huile sur toile",
           "title": "Vague rouge II",
           "availability": "Disponible",
           "image": "images/img_0122.jpeg",
-          "description": "\nVague Rouge est une série composée de deux tableaux qui explore la rencontre entre la force de la mer, la mémoire et les émotions humaines.\nLa vague devient ici un symbole de mouvement, de transformation et de résistance. Le rouge, couleur dominante, évoque à la fois l’énergie, la passion, le danger et la puissance vitale. Il donne à la mer une dimension presque intérieure : une mer qui ne représente pas seulement un paysage, mais un état d’âme.\nÀ travers ces deux œuvres, je cherche à créer un dialogue entre le calme et la tension, la beauté et la fragilité, le mouvement et l’immobilité. La répétition de la vague dans les deux tableaux suggère un cycle perpétuel : comme la mer, nos histoires reviennent, se transforment et laissent toujours une trace.\nInspirée par mon rapport à la mer et à la culture côtière sénégalaise, cette série fait également écho à la mémoire des peuples de la côte, aux voyages et aux départs, ainsi qu’à cette relation profonde entre l’être humain et l’océan.\nVague Rouge est finalement une invitation à regarder la mer autrement : non comme un simple horizon, mais comme une force vivante qui porte nos souvenirs, nos peurs, nos espoirs et notre désir d’avancer.",
+          "description": "",
           "year": "2026"
         }
-      ]
+      ],
+      "description": "Vague Rouge est une série composée de deux tableaux qui explore la rencontre entre la force de la mer, la mémoire et les émotions humaines.\nLa vague devient ici un symbole de mouvement, de transformation et de résistance. Le rouge, couleur dominante, évoque à la fois l’énergie, la passion, le danger et la puissance vitale. Il donne à la mer une dimension presque intérieure : une mer qui ne représente pas seulement un paysage, mais un état d’âme.\nÀ travers ces deux œuvres, je cherche à créer un dialogue entre le calme et la tension, la beauté et la fragilité, le mouvement et l’immobilité. La répétition de la vague dans les deux tableaux suggère un cycle perpétuel : comme la mer, nos histoires reviennent, se transforment et laissent toujours une trace.\nInspirée par mon rapport à la mer et à la culture côtière sénégalaise, cette série fait également écho à la mémoire des peuples de la côte, aux voyages et aux départs, ainsi qu’à cette relation profonde entre l’être humain et l’océan.\nVague Rouge est finalement une invitation à regarder la mer autrement : non comme un simple horizon, mais comme une force vivante qui porte nos souvenirs, nos peurs, nos espoirs et notre désir d’avancer."
     },
     {
-      "name": "betgaal ",
+      "name": "betgaal",
       "works": [
         {
           "title": "Élan des pirogues",
@@ -50,11 +51,11 @@
           "artist": "Nalla Thioye",
           "medium": "Acrylique sur toile",
           "image": "images/05-motifs.jpg",
-          "alt": "construit une architecture de signes où l’écriture, les symboles et les formes géométriques deviennent les fragments d’un langage ancien.",
+          "alt": "Composition de signes, d’écritures et de formes géométriques",
           "description": ". L’œuvre\névoque un espace spirituel où les motifs agissent comme des gardiens silencieux d’une mémoire\ncollective."
         },
         {
-          "title": "L'Œil du voyage ",
+          "title": "L'Œil du voyage",
           "artist": "Nalla Thioye",
           "medium": "Acrylique sur toile",
           "image": "images/06-oeil.jpg",
@@ -64,7 +65,7 @@
       ]
     },
     {
-      "name": "Sunu Thiossane ",
+      "name": "Sunu Thiossane",
       "works": [
         {
           "title": "MIRROR IDENTITÉ",
@@ -77,9 +78,9 @@
         {
           "artist": "Nalla Thioye",
           "medium": "Acrylique sur toile",
-          "title": "héritage des couleurs ",
+          "title": "Héritage des couleurs",
           "image": "images/d92cfcb9-d6be-4edf-ae2e-d7084544c0ca.jpeg",
-          "alt": "Ce portrait vibrant met en lumière une figure féminine souriante et assurée, exprimant fierté, douceur et résilience. Au cœur de la composition, une richesse est omniprésente, nichée entre le fond coloré et la motivation sous-jacente, évoquant une riche et vibrante tapisserie culturelle.",
+          "alt": "Portrait peint d’une femme souriante aux couleurs vives",
           "description": "Les vêtements et les bijoux – boucles d'oreilles, colliers et ornements – suggèrent une identité profondément rayonnante, enracinée dans la tradition, que j'ai réinterprétée de façon contemporaine par l'utilisation de couleurs intenses et de textures variées. Le vélo, rendu avec une profusion de tons et de mouvement, peut être vu comme une métaphore des souvenirs accumulés, aux influences multiples.\n"
         }
       ]

@@ -38,10 +38,12 @@ function replaceInner(html, id, content) {
   return html.replace(new RegExp('(<[^>]+id="' + id + '"[^>]*>)[\\s\\S]*?(</[^>]+>)'), '$1' + content + '$2');
 }
 function replaceMount(html, id, content) {
-  return html.replace(new RegExp('<div id="' + id + '"[^>]*>[\\s\\S]*?</div>'), '<div id="' + id + '">' + content + '</div>');
+  const pattern = new RegExp('(<div\\b(?=[^>]*\\bid="' + id + '")[^>]*>)[\\s\\S]*?</div>');
+  if (!pattern.test(html)) throw new Error('Conteneur introuvable : ' + id);
+  return html.replace(pattern, (_, opening) => opening + content + '</div>');
 }
 function removeDataScripts(html) {
-  return html.replace(/\s*<script src="(?:site|home|gallery|works|artists|editorial-page)\.js"><\/script>/g, '');
+  return html.replace(/<noscript>[\s\S]*?<\/noscript>/g, '').replace(/\s*<script src="(?:site|home|gallery|works|artists|editorial-page)\.js"><\/script>/g, '');
 }
 function decorateShell(html) {
   const words = String(site.name || '').trim().split(/\s+/);
@@ -56,98 +58,13 @@ function decorateShell(html) {
     .replace(/<a class="foot-mail" data-site-email href="[^"]*">[\s\S]*?<\/a>/g, '<a class="foot-mail" data-site-email href="mailto:' + esc(site.email) + '">' + esc(site.email) + '</a>');
 }
 function write(name, html) {
+  const page = ({'customisation.html':customisation,'exposition.html':exposition,'galerie.html':gallery})[name];
+  if(page){ html=html.replace(/<title>[\s\S]*?<\/title>/,'<title>'+esc(page.title)+' · Galerie Weurseuk</title>').replace(/<meta name="description"[^>]*>/,'<meta name="description" content="'+esc(page.intro)+'"/>'); }
   fs.writeFileSync(path.join(out, name), removeDataScripts(decorateShell(html)));
 }
 function source(name) { return fs.readFileSync(path.join(root, name), 'utf8'); }
 
-function workDetails(work) {
-  return [work.medium, work.dimensions, work.year, work.price, work.availability].filter(Boolean);
-}
-function renderWorks() {
-  return (worksData.series || []).map((series) => {
-    const works = series.works || [];
-    if (!works.length) return '';
-    const media = [...new Set(works.map((work) => String(work.medium || '').split(' sur ')[0].trim()).filter(Boolean))].join(', ');
-    const cards = works.map((work) => {
-      const details = workDetails(work);
-      return '<figure class="work zoom" tabindex="0" role="button" data-title="' + esc(work.title) +
-        '" data-artist="' + esc(work.artist) + '" data-meta="' + esc(details.join(' · ')) +
-        '" data-desc="' + esc(work.description) + '"><div class="work-img"><img loading="lazy" src="' +
-        esc(work.image) + '" alt="' + esc(work.title) + (work.alt ? ' — ' + esc(work.alt) : '') +
-        '"/></div><figcaption class="work-txt"><h3>' + esc(work.title) + '</h3><p class="meta">' +
-        esc([work.artist].concat(details).filter(Boolean).join(' · ')) + '</p></figcaption></figure>';
-    }).join('');
-    return '<div class="serie rv" id="' + esc(slugify(series.name)) + '"><div class="serie-bar"><h2>' +
-      esc(series.name) + '</h2><span class="count">' + works.length + (works.length > 1 ? ' toiles' : ' toile') +
-      (media ? ' · ' + esc(media) : '') + '</span></div><div class="grid' +
-      (works.length === 2 ? ' pair' : '') + '">' + cards + '</div></div>';
-  }).join('');
-}
-function renderFeatured() {
-  const artist = (artistsData.artists || [])[0];
-  const cards = (worksData.series || []).filter((series) => (series.works || []).length).map((series) => {
-    const works = series.works;
-    const work = works[0];
-    const media = [...new Set(works.map((item) => String(item.medium || '').split(' sur ')[0].trim()).filter(Boolean))];
-    const summary = works.length + (works.length > 1 ? ' toiles' : ' toile') + (media.length ? ' · ' + media.join(', ') : '');
-    return '<a class="work" href="oeuvres.html#' + esc(slugify(series.name)) + '" style="text-decoration:none"><div class="work-img"><img loading="lazy" src="' +
-      esc(work.image) + '" alt="' + esc(work.alt || work.title) + '"/></div><div class="work-txt"><h3>' +
-      esc(series.name) + '</h3><p class="meta">' + esc(summary) + '</p></div></a>';
-  }).join('');
-  if (!artist) return '';
-  return '<div class="section-head rv"><h2>' + esc(home.featured_label || 'À l\'affiche') + ' · ' + esc(artist.name) +
-    '</h2>' + (artist.intro ? '<p class="lead">' + esc(artist.intro) + '</p>' : '') +
-    '</div><div class="grid rv">' + cards + '</div><div class="cta-row rv"><a class="btn" href="' +
-    esc(slugify(artist.name)) + '.html">Découvrir ' + esc(artist.name) + '</a></div>';
-}
-function renderGallery() {
-  const sections = (gallery.sections || []).map((section) => '<div class="serie rv"><div class="serie-bar"><h2>' +
-    esc(section.title) + '</h2></div>' + (section.text ? '<p class="prose">' + esc(section.text) + '</p>' : '') +
-    (section.button_label ? '<div class="cta-row"><a class="btn" href="' + safeUrl(section.button_url) + '">' + esc(section.button_label) +
-    '</a></div>' : '') + '</div>').join('');
-  const place = [site.location, site.country].filter(Boolean).join(' — ');
-  const lines = (site.phone ? '<a class="line" href="tel:' + esc(tel(site.phone)) + '"><span class="line-label">Téléphone</span>' + esc(site.phone) + '</a>' : '') +
-    (site.whatsapp ? '<a class="line" href="https://wa.me/' + esc(String(site.whatsapp).replace(/\D/g, '')) + '"><span class="line-label">WhatsApp</span>' + esc(gallery.whatsapp_label) + '</a>' : '') +
-    (site.email ? '<a class="line" href="mailto:' + esc(site.email) + '"><span class="line-label">Email</span>' + esc(site.email) + '</a>' : '');
-  return '<section class="page-head"><div class="wrap">' + (gallery.eyebrow ? '<p class="eyebrow">' + esc(gallery.eyebrow) + '</p>' : '') +
-    '<h1>' + esc(gallery.title) + '</h1>' + (gallery.intro ? '<p class="lead">' + esc(gallery.intro) + '</p>' : '') +
-    '</div></section><section class="section"><div class="wrap">' + sections + '</div></section><section class="section contact"><div class="wrap"><h2>' +
-    esc(gallery.contact_title) + '</h2><p>' + esc(place) + (place && gallery.contact_text ? '. ' : '') + esc(gallery.contact_text) +
-    '</p><div class="lines">' + lines + '</div></div></section>';
-}
-function renderEditorial(page) {
-  const sections = (page.sections || []).map((section) => {
-    const visual = section.image ? '<figure class="content-visual rv"><img loading="lazy" src="' + esc(section.image) +
-      '" alt="' + esc(section.image_alt || section.title) + '"/>' + (section.caption ? '<figcaption>' + esc(section.caption) + '</figcaption>' : '') + '</figure>' : '';
-    return '<article class="content-block' + (section.image ? ' has-image' : '') + '"><div class="content-copy rv"><h2>' + esc(section.title) +
-      '</h2>' + (section.text ? '<p>' + esc(section.text) + '</p>' : '') + '</div>' + visual + '</article>';
-  }).join('');
-  const galleryItems = (page.gallery || []).filter((item) => item.image).map((item) => '<figure class="work rv"><div class="work-img"><img loading="lazy" src="' +
-    esc(item.image) + '" alt="' + esc(item.alt || item.caption || '') + '"/></div>' + (item.caption ? '<figcaption>' + esc(item.caption) + '</figcaption>' : '') + '</figure>').join('');
-  const galleryHtml = galleryItems ? '<div class="editorial-gallery"><div class="grid">' + galleryItems + '</div></div>' : '';
-  return '<section class="page-head"><div class="wrap">' + (page.eyebrow ? '<p class="eyebrow">' + esc(page.eyebrow) + '</p>' : '') +
-    '<h1>' + esc(page.title) + '</h1>' + (page.intro ? '<p class="lead">' + esc(page.intro) + '</p>' : '') +
-    (page.cta_label ? '<div class="cta-row"><a class="btn" href="' + safeUrl(page.cta_url) + '">' + esc(page.cta_label) + '</a></div>' : '') +
-    '</div></section><section class="section"><div class="wrap"><div class="content-blocks">' + sections + '</div>' + galleryHtml + '</div></section>';
-}
-function renderArtistsList() {
-  return '<div class="grid rv">' + (artistsData.artists || []).map((artist) => '<a class="work" href="' + esc(slugify(artist.name)) +
-    '.html" style="text-decoration:none"><div class="work-img"><img loading="lazy" src="' + esc(artist.portrait) +
-    '" alt="' + esc(artist.portrait_alt || artist.name) + '"/></div><div class="work-txt"><h3>' + esc(artist.name) +
-    '</h3><p class="meta">' + esc(artist.discipline || artist.role) + '</p></div></a>').join('') + '</div>';
-}
-function renderArtistDetail(artist) {
-  if (!artist) return '<div class="wrap"><p class="prose">Cet artiste est introuvable.</p></div>';
-  const exhibitions = (artist.exhibitions || []).filter((entry) => (entry.items || []).length).map((entry) => '<div class="expo-year rv"><h3>' + esc(entry.year) +
-    '</h3><ul class="expo-list">' + entry.items.map((item) => '<li>' + esc(item) + '</li>').join('') + '</ul></div>').join('');
-  return '<section class="page-head"><div class="wrap"><p class="eyebrow">' + esc(artist.role) + '</p><h1>' + esc(artist.name) + '</h1>' +
-    (artist.intro ? '<p class="lead">' + rich(artist.intro) + '</p>' : '') + (artist.highlight_tag || artist.highlight_text ? '<div class="badge rv">' +
-    (artist.highlight_tag ? '<span class="badge-tag">' + esc(artist.highlight_tag) + '</span>' : '') + (artist.highlight_text ? '<p>' + rich(artist.highlight_text) + '</p>' : '') + '</div>' : '') +
-    '</div></section><section class="section bio"><div class="wrap bio-grid">' + (artist.portrait ? '<figure class="portrait rv"><img src="' + esc(artist.portrait) +
-    '" alt="' + esc(artist.portrait_alt || artist.name) + '"/>' + (artist.portrait_credit ? '<figcaption>' + esc(artist.portrait_credit) + '</figcaption>' : '') + '</figure>' : '') +
-    '<div class="rv"><h2>' + esc(artist.statement_title || 'Note d\'intention') + '</h2>' + (artist.statement ? '<p>' + rich(artist.statement) + '</p>' : '') +
-    '<div class="cta-row"><a class="btn" href="oeuvres.html">Voir les œuvres</a></div></div></div></section>' + (exhibitions ? '<section class="section"><div class="wrap"><div class="section-head rv"><h2>Expositions &amp; participations</h2></div>' + exhibitions + '</div></section>' : '');
-}
+const { renderWorks, renderFeatured, renderGallery, renderEditorial, renderArtistsList, renderArtistDetail } = require('../render-content.js')({site, home, gallery, worksData, artistsData, atelier});
 
 let index = source('index.html');
 index = index.replace(/<img id="home-hero-image"[^>]*>/, '<img id="home-hero-image" src="' + esc(home.hero_image) + '" alt="' + esc(home.hero_alt || '') + '"/>');
@@ -184,9 +101,7 @@ let galleryPage = source('galerie.html');
 galleryPage = galleryPage.replace(/<main id="gallery-page"><\/main>/, '<main id="gallery-page">' + renderGallery() + '</main>');
 write('galerie.html', galleryPage);
 
-let atelierPage = source('atelier.html');
-atelierPage = replaceMount(atelierPage, 'editorial-page', renderEditorial(atelier));
-write('atelier.html', atelierPage);
+write('atelier.html', source('atelier.html'));
 let customisationPage = source('customisation.html');
 customisationPage = replaceMount(customisationPage, 'editorial-page', renderEditorial(customisation));
 write('customisation.html', customisationPage);
@@ -194,4 +109,5 @@ let expositionPage = source('exposition.html');
 expositionPage = replaceMount(expositionPage, 'editorial-page', renderEditorial(exposition));
 write('exposition.html', expositionPage);
 
+require('./check-site.js')(root, out);
 console.log('Site statique généré dans dist/.');

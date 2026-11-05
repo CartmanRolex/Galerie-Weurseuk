@@ -70,23 +70,7 @@
     var meetingText = document.getElementById('home-meeting-text');
     if (meetingText) meetingText.textContent = page.meeting_text || '';
 
-    var cards = series.map(function (s) {
-      var works = s.works || [];
-      var work = works[0];
-      return '<a class="work" href="oeuvres.html#' + esc(slugify(s.name)) +
-        '" style="text-decoration:none">' +
-        '<div class="work-img"><img loading="lazy" src="' + esc(work.image) +
-        '" alt="' + esc(work.alt || work.title) + '"/></div>' +
-        '<div class="work-txt"><h3>' + esc(s.name) + '</h3><p class="meta">' +
-        esc(summary(works)) + '</p></div></a>';
-    }).join('');
-
-    mount.innerHTML =
-      '<div class="section-head rv"><h2>' + esc(page.featured_label || 'À l\'affiche') + ' · ' + esc(artist.name) + '</h2>' +
-      (artist.intro ? '<p class="lead">' + esc(artist.intro) + '</p>' : '') + '</div>' +
-      '<div class="grid rv">' + cards + '</div>' +
-      '<div class="cta-row rv"><a class="btn" href="' + esc(slugify(artist.name)) +
-      '.html">Découvrir ' + esc(artist.name) + '</a></div>';
+    mount.innerHTML = GalleryContent({artistsData:data[0],worksData:data[1],home:page}).renderFeatured();
     document.dispatchEvent(new CustomEvent('works:rendered'));
   }).catch(function (err) {
     mount.innerHTML = '<p class="prose">Les informations n\'ont pas pu être chargées. ' +

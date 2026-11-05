@@ -253,3 +253,24 @@ body.lb-locked{overflow:hidden}
 
 /* Préserver la silhouette complète du vêtement personnalisé. */
 .content-visual img[src="images/img_0515_original.jpeg"]{aspect-ratio:3/4;object-fit:contain;max-height:560px}
+
+/* Une hiérarchie commune pour les parcours de découverte et de visite. */
+[hidden]{display:none!important}
+[id]{scroll-margin-top:115px}
+.nav-links{gap:1.5rem}.nav-links a{letter-spacing:.12em}
+a.work{text-decoration:none}.text-link{display:inline-block;color:var(--gold);text-underline-offset:5px;margin-top:1.2rem}
+.featured-artist{margin-top:2rem}.featured-artist .text-link{margin-top:.5rem}
+.gallery-blocks{display:grid;gap:3rem}.gallery-block h2,.event-card h2,.editorial-gallery h2{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.5vw,3rem);line-height:1.15}
+.gallery-block .prose{margin-top:1rem}.content-copy h3{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3vw,2.3rem)}
+.series-description{margin:1.5rem 0 2.5rem;white-space:pre-line}.editorial-gallery h2{margin-bottom:2rem}
+.events-list{display:grid;gap:4rem}.event-card{padding-bottom:3.5rem;border-bottom:1px solid var(--rule)}
+.event-card:last-child{padding-bottom:0;border-bottom:0}.event-head{display:flex;gap:1rem;justify-content:space-between;align-items:start}.event-head .eyebrow{margin-bottom:1rem}
+.event-status{color:var(--gold);font-size:.8rem;white-space:nowrap}.event-dates{margin-top:1.3rem;color:var(--gold)}.event-location{color:var(--cream)}
+.event-note{font-size:.8rem;color:var(--muted);margin-top:.5rem;max-width:64ch}.event-card .prose{margin-top:1.5rem}.event-card h3{font:500 .85rem var(--body);margin-top:1.5rem;color:var(--gold)}
+.event-card h3+p{max-width:64ch;margin-top:.35rem}.badge .text-link{margin-top:0}.bio .rv>p{white-space:pre-line}
+.contact .prose{margin-top:1rem}.lb-desc{white-space:pre-line}
+@media(max-width:760px){.event-head{display:block}.event-status{display:block;margin:0 0 1rem}.nav-links{gap:.5rem 1rem}}
+
+.series-story{margin:1rem 0 2rem}.series-story summary{cursor:pointer;color:var(--gold);text-underline-offset:4px}.series-story .series-description{margin:1rem 0 0}
+
+@media(max-width:1200px){[id]{scroll-margin-top:155px}}

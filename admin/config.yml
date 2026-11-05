@@ -29,7 +29,7 @@ auth:
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # Lien « voir le site » dans l'éditeur.
-site_url: https://cartmanrolex.github.io/Nalla-Galerie/
+site_url: https://galerieweurseuk.com/
 
 # Les photos déposées dans l'éditeur atterrissent ici.
 media_folder: images
@@ -119,6 +119,10 @@ collections:
                 widget: text
                 required: false
                 hint: Les balises <em>…</em> mettent en italique.
+              - label: Encart — lien vers l’exposition
+                name: highlight_url
+                widget: string
+                required: false
               - label: Titre du texte d'intention
                 name: statement_title
                 widget: string
@@ -168,6 +172,11 @@ collections:
                 name: name
                 widget: string
                 hint: Affiché en titre, par exemple « Braises ».
+              - label: Présentation de la série
+                name: description
+                widget: text
+                required: false
+                hint: Texte commun affiché une seule fois avant les œuvres.
               - label: Œuvres
                 name: works
                 widget: list
@@ -199,7 +208,7 @@ collections:
                     widget: text
                     required: false
                     hint: Texte affiché quand on clique sur l'œuvre.
-                  - { label: Dimensions, name: dimensions, widget: string, required: false }
+                  - { label: Dimensions, name: dimensions, widget: string, required: false, hint: "Indiquer l’unité si elle est connue ; ne pas la déduire." }
                   - { label: Année, name: year, widget: string, required: false }
                   - { label: Prix, name: price, widget: string, required: false, hint: Laisser vide pour ne rien afficher. }
                   - label: Disponibilité
@@ -255,7 +264,7 @@ collections:
           - { label: Contact — texte, name: contact_text, widget: text, required: false }
           - { label: WhatsApp — texte du lien, name: whatsapp_label, widget: string, required: false }
       - name: atelier
-        label: Atelier
+        label: Atelier — bloc de La galerie
         file: atelier.json
         format: json
         fields: &editorial_page_fields
@@ -296,6 +305,7 @@ collections:
                 name: caption
                 widget: string
                 required: false
+          - { label: Titre de la galerie photos, name: gallery_title, widget: string, required: false }
           - label: Galerie photos
             name: gallery
             widget: list
@@ -324,12 +334,86 @@ collections:
             required: false
             hint: Facultatif, seulement pour une vraie action (ex. commander une customisation). Les coordonnées sont déjà en bas de chaque page. Pour WhatsApp, utiliser « https://wa.me/221776817715 ». Un lien vers une page du site, par exemple « artistes.html », est aussi accepté.
       - name: customisation
-        label: Customisation de vêtements
+        label: Créations sur mesure
         file: customisation.json
         format: json
         fields: *editorial_page_fields
       - name: exposition
-        label: Exposition
+        label: Expositions
         file: exposition.json
         format: json
-        fields: *editorial_page_fields
+        fields:
+        - label: Petit titre
+          name: eyebrow
+          widget: string
+          required: false
+        - label: Titre
+          name: title
+          widget: string
+        - label: Introduction
+          name: intro
+          widget: text
+          required: false
+        - label: Événements
+          name: events
+          widget: list
+          summary: '{{fields.title}}'
+          fields:
+          - label: Identifiant du lien
+            name: id
+            widget: string
+            hint: 'Stable et unique, sans espace : venise-2026.'
+          - label: Titre
+            name: title
+            widget: string
+          - label: Nature du rendez-vous
+            name: kind
+            widget: string
+            hint: Exposition de la galerie, participation de l’artiste ou manifestation annoncée.
+          - label: Lieu
+            name: location
+            widget: string
+          - label: Date de début
+            name: start
+            widget: datetime
+            format: YYYY-MM-DD
+            date_format: DD/MM/YYYY
+            time_format: false
+          - label: Date de fin
+            name: end
+            widget: datetime
+            format: YYYY-MM-DD
+            date_format: DD/MM/YYYY
+            time_format: false
+          - label: Précision sur les dates
+            name: date_note
+            widget: text
+            required: false
+          - label: Présentation
+            name: description
+            widget: text
+            required: false
+          - label: Artistes participants
+            name: artists
+            widget: list
+            required: false
+            field:
+              label: Nom
+              name: name
+              widget: string
+          - label: Vernissage
+            name: opening
+            widget: string
+            required: false
+          - label: Horaires propres à cet événement
+            name: hours
+            widget: string
+            required: false
+          - label: Adresse propre à cet événement
+            name: address
+            widget: string
+            required: false
+          - label: Lien de la carte
+            name: map_url
+            widget: string
+            required: false
