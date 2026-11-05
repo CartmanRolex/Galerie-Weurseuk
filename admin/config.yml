@@ -3,7 +3,7 @@
 # DecapBridge si le site y est recréé.
 backend:
   name: git-gateway
-  repo: CartmanRolex/Nalla-Galerie
+  repo: CartmanRolex/Galerie-Weurseuk
   branch: main
   auth_type: pkce
   base_url: https://auth.decapbridge.com

@@ -4,7 +4,7 @@ L'interface d'administration est déjà dans le dépôt (`admin/`). Il manque
 seulement le service qui gère la connexion GitHub. Compter 20 à 30 minutes.
 
 À la fin, Nalla ira sur
-**https://cartmanrolex.github.io/Nalla-Galerie/admin/**, se connectera avec son
+**https://galerieweurseuk.com/admin/**, se connectera avec son
 compte GitHub, et pourra ajouter ses œuvres par formulaire.
 
 ---
@@ -33,7 +33,7 @@ Garder cette URL sous la main, elle sert aux étapes 2 et 4.
 1. Ouvrir https://github.com/settings/applications/new
 2. Remplir :
    - **Application name** : `Galerie Weurseuk CMS`
-   - **Homepage URL** : `https://cartmanrolex.github.io/Nalla-Galerie/`
+   - **Homepage URL** : `https://galerieweurseuk.com/`
    - **Authorization callback URL** : l'URL du worker suivie de `/callback`
      → `https://sveltia-cms-auth.quelquechose.workers.dev/callback`
 3. Valider, puis **Generate a new client secret**.
@@ -66,7 +66,7 @@ par l'URL réelle du worker (sans `/` final), puis commiter.
 
 ## 5. Vérifier
 
-1. Aller sur https://cartmanrolex.github.io/Nalla-Galerie/admin/
+1. Aller sur https://galerieweurseuk.com/admin/
 2. Cliquer **Se connecter avec GitHub** et autoriser.
 3. Ouvrir *Catalogue → Œuvres* : les 3 séries et les 7 toiles doivent apparaître.
 4. Modifier un titre, enregistrer, et vérifier sur la page Œuvres après une minute.
